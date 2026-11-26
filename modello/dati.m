@@ -1,48 +1,46 @@
-%CORE DATA
-%termal power MW
-Wth=300;
-%coolant mass flow rate kg/s
-tao=25984;
-%total number of FAs
-FAs=171;
-%Pins per FA
-Pins=127;
-%coolant inlet T gradi C
-Tin=400;
-%coolant outlet T gradi C
-Tout=480;
+%% CORE DATA
+core.thermal_power_MW = 300;
+core.coolant_mass_flow_kg_s = 25984;
+core.number_of_FAs = 171;
+core.pins_per_FA = 127;
+core.coolant_inlet_temperature_C = 400;
+core.coolant_outlet_temperature_C = 480;
 
 
-%{PIN DATA
-% Cladding Material= 15-15-Ti
-% Fuel Material= MOX
-%}
+%% PIN DATA
+% Materials
+pin.cladding_material = "15-15-Ti";
+pin.fuel_material = "MOX";
 
-%Cladding outer radius
-Rcl_out=5.25*10^-3;
-%Cladding inner radius
-Rcl_in=4.65*10^-3;
-%Pellet radius 
-Rp_out=4.50*10^-3;
-Rp_in=1*10^-3;
-Hpin=0.6;
-%geometrie per assembly su power point
+% Geometry
+pin.cladding_outer_radius_m = 5.25e-3;
+pin.cladding_inner_radius_m = 4.65e-3;
+pin.pellet_outer_radius_m = 4.50e-3;
+pin.pellet_inner_radius_m = 1e-3;
+pin.height_m = 0.6;
 
 
-%DATA SG
-%power MW
-Wsg=37,5;
-%feedwater inlet T
-Tin_H20=335;
-Tout_H20=450;
-%pressur bar
-PH20=180;
-%slave tube
-DSl_ext=9.52*10^-3;
-ThSl=1.07*10^-3;
-RSl_in=(DSl_ext-ThSl_ext*2)/2;
-RSl_out=DSl_ext/2;
-%inner tube
-DIn_in=19.05*10^-3;
-Th
+%% STEAM GENERATOR DATA
+steam_generator.power_MW = 37.5;
+steam_generator.feedwater_inlet_temperature_C = 335;
+steam_generator.feedwater_outlet_temperature_C = 450;
+steam_generator.pressure_bar = 180;
+steam_generator.p = 34.417e-3;
 
+
+
+
+%% SLAVE TUBE DATA
+steam_generator.slave_tube.external_diameter_m = 9.52e-3;
+steam_generator.slave_tube.wall_thickness_m = 1.07e-3;
+
+steam_generator.slave_tube.outer_radius_m = ...
+    steam_generator.slave_tube.external_diameter_m / 2;
+
+steam_generator.slave_tube.inner_radius_m = ...
+    (data.steam_generator.slave_tube.external_diameter_m - ...
+    2*data.steam_generator.slave_tube.wall_thickness_m) / 2;
+
+
+%% INNER TUBE DATA
+steam_generator.inner_tube.inner_diameter_m = 19.05e-3;
